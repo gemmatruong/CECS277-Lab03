@@ -1,5 +1,5 @@
 """ LAB #03
-    09/08/2025
+    09/10/2025
     Student 1: Thi, Truong
     Student 2: Udonna, Uchegbulam
 
@@ -70,11 +70,13 @@ def get_letters_remaining(incorrect, correct):
                correct - a list of correct letters
         Output: a list of remaining letters
     """
-    remaining = []
+    remaining = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
+                 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 
+                 'Z']
 
-    for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
-        if letter not in incorrect and letter not in correct:
-            remaining.append(letter)
+    for letter in remaining[:]:
+        if letter in incorrect or letter in correct:
+            remaining.remove(letter)
     
     return remaining
 
