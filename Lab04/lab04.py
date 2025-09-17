@@ -1,5 +1,5 @@
 """ LAB #04
-09/15/2025
+09/17/2025
 Student 1: Thi, Truong
 Student 2: Udonna, Uchegbulam
 A maze game allows the user to solve a maze that is read in from a file.
@@ -44,7 +44,7 @@ def display_maze(maze, location):
     """
     for row in range(len(maze)):
         for col in range(len(maze[row])):
-            if (row, col) == location:
+            if [row, col] == location:
                 print('X', end='')
             else:
                 print(maze[row][col], end='')
@@ -73,25 +73,25 @@ def main():
 
         # Calculate new location based on user's choice
         if user_choice == 1:  # North
-            new_loc = (loc[0]-1, loc[1])
+            new_loc = [loc[0]-1, loc[1]]
 
         elif user_choice == 2:  # South
-            new_loc = (loc[0]+1, loc[1])
+            new_loc = [loc[0]+1, loc[1]]
         
         elif user_choice == 3:  # East
-            new_loc = (loc[0], loc[1]+1)
+            new_loc = [loc[0], loc[1]+1]
         
         else: # West
-            new_loc = (loc[0], loc[1]-1)
+            new_loc = [loc[0], loc[1]-1]
         
-        #  check the maze at the location the user is moving to see if it is a wall 
+        #  Check the maze at the location the user is moving to see if it is a wall 
         if maze[new_loc[0]][new_loc[1]] == '*':
             print("You cannot move there.")
         else:
             loc = new_loc
-            display_maze(maze, loc)
-            
+
             if maze[loc[0]][loc[1]] == 'f':
+                display_maze(maze, loc)
                 print("Congratulations! You solved the maze!")
                 break
 
