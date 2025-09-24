@@ -1,5 +1,5 @@
 """ LAB #05
-    09/17/2025
+    09/24/2025
     Student 1: Thi, Truong
     Student 2: Udonna, Uchegbulam
 
@@ -149,7 +149,7 @@ def main():
             last_name = input("Enter last name: ").strip()
             found = False
             for cont in contacts:
-                # use lower() function # avoid case-sensitivity
+                # use lower() function to avoid case-sensitivity
                 if cont.f_name.lower() == first_name.lower() and cont.l_name.lower() == last_name.lower():
                     print(cont)
                     modify_contact(cont)
