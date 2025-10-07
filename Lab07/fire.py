@@ -14,4 +14,5 @@ class FireDragon(Dragon):
             return f"{self.name()} engulfs you in flames for {dmg} damage!"
         else:
             return f"{self.name()} tries to spit fire at you but is all out of fire shots."
-    
+    def __str__(self):
+        return super().__str__() + f"\nFire Shots remaining: {self._fire_shot}"
