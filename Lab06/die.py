@@ -73,4 +73,4 @@ class Die:
         Returns:
             int: The diffence of self.value and other.value.
         """
-        return abs(self._value - other._value)
+        return self._value - other._value

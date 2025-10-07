@@ -1,7 +1,24 @@
+""" LAB #06
+    09/29/2025
+    Student 1: Thi, Truong
+    Student 2: Udonna, Uchegbulam
+
+    A program that creates a dice game that awards the user points for a pair, three-of-a-kind, or a series.
+"""
+
+
 from player import Player
 import check_input
 
 def take_turn(player):
+    """ Play one turn for the given player.
+
+    This function roll the player’s dice, display the dice, check for and display any win
+    types (pair, series, three-of-a-kind), and display the updated score
+
+    Args:
+        player: An object representing the player.
+    """
     player.roll_dice()
     print()
     print(player)
