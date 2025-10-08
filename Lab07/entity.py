@@ -1,4 +1,13 @@
 class Entity:
+    """
+    Represents a basic game entity with a name, health points (HP),
+    and the ability to take damage.
+
+    Attributes:
+        _name (str): The name of the entity.
+        _hp (int): The current health points of the entity.
+        _max_hp (int): The maximum health points the entity can have.
+    """
     def __init__(self, name, max_hp):
         self._name = name
         self._hp = max_hp
@@ -19,5 +28,5 @@ class Entity:
         else:
             self._hp = temp
     def __str__(self):
-        return f"{self._name}: {self._hp}//{self._max_hp}"
+        return f"{self.name}: {self.hp}/{self._max_hp}"
     
