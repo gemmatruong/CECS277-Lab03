@@ -1,3 +1,11 @@
+""" LAB #07
+    10/08/2025
+    Student 1: Thi, Truong
+    Student 2: Udonna, Uchegbulam
+
+    A program that creates a game where the user must defeat three dragons to pass the trials.
+"""
+
 from hero import Hero
 from dragon import Dragon
 from fire import FireDragon

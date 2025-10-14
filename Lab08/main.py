@@ -1,0 +1,78 @@
+from vehicle import Vehicle
+from car import Car
+from motorcycle import Motorcycle
+from truck import Truck
+import check_input
+import random
+
+def create_track(num_vehicles, track_length):
+    track = []
+    # One lane per vehicle and 2 obstacles per lane
+    # place obstacles on track, 2 in each lane at random column
+    # (but not at start or end points)
+    for i in range(num_vehicles):
+        lane = ['-'] * track_length
+
+        if track_length <= 2:
+            raise ValueError("The length of track must be greater than 2!")
+        
+        obs_locs = sorted(random.sample(range(1, track_length - 1), 2))
+        
+        for pos in obs_locs:
+            lane[pos] = '0'
+
+        track.append(lane)
+
+    return track
+
+def display_track(track, track_length, vehicles):
+    # place the vehicle's initials at its current position. Player is a 'P'
+    # display the updated track
+    pass
+
+def main():
+    vehicle_names = ["Lightning Car", "Swift Bike", "Bohemoth Truck"]
+    vehicle_letters = ["C", "M", "T"]
+    vehicle_speed = [7, 8, 6]
+
+    # Player selection
+    print("Rad Racer!")
+    print("Choose a vehicle and race it down the track (player = 'P'). Slow down for obstacles ('0') or else you'll crash!")
+    print("1. Lightning Car - a fast car. Speed: 7. Special: Nitro Boost (1.5x speed)")
+    print("2. Swift Bike - a speedy motorcycle. Speed: 8. Special: Wheelie (2x speed but there's a chance you'll wipe out).")
+    print("3. Behemoth Truck - a heavy truck. Speed: 6. Special: Ram (2x speed and it smashes through obstacles).")
+    player = check_input.get_int_range("Choose your vehicle (1-3): ", 1, 3)
+
+    # Create track
+    track = create_track(3, 100)
+
+    # Change initial of the vehicle has been chosen by player to 'P':
+    vehicle_letters[player-1] = "P"
+    
+    # Initialize 3 objects for 3 vehicles
+    vehicles = [Car(vehicle_names[0], vehicle_letters[0], vehicle_speed[0]), 
+                Motorcycle(vehicle_names[1], vehicle_letters[1], vehicle_speed[1]),
+                Truck(vehicle_names[2], vehicle_letters[2], vehicle_speed[2])]
+    winners = []
+
+    # Run the game
+    while len(winners) < len(vehicles):
+        # display the vehicles and track
+
+        # move vehicles
+
+        # move opponents
+        r = random.random() # 0.0 < r < 1.0
+        # if r <= 0.3:
+        #     # fast
+        # elif 0.3 < r < 0.6:
+        #     # special move
+        # else: # 0.6 > 1.0
+            # slow
+
+        # check for winners
+    
+    # print the winners
+
+if __name__ == "__main__":
+    main()
