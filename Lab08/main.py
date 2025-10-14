@@ -10,16 +10,16 @@ def create_track(num_vehicles, track_length):
     # One lane per vehicle and 2 obstacles per lane
     # place obstacles on track, 2 in each lane at random column
     # (but not at start or end points)
+    if track_length <= 2:
+        raise ValueError("The length of track must be greater than 2!")
+
     for i in range(num_vehicles):
         lane = ['-'] * track_length
-
-        if track_length <= 2:
-            raise ValueError("The length of track must be greater than 2!")
         
-        obs_locs = sorted(random.sample(range(1, track_length - 1), 2))
+        obs_locs = sorted(random.sample(range(1, track_length - 2), 2))
         
         for pos in obs_locs:
-            lane[pos] = '0'
+            lane[pos] = 'O'
 
         track.append(lane)
 
@@ -31,14 +31,18 @@ def display_track(track, track_length, vehicles):
     for i, vehicle in enumerate(vehicles):
         lane = track[i]
         pos = vehicle.position
-        if pos <= track_length:
-            for j, column in enumerate(lane):
-                if column == vehicle.initial:
-                    lane[j] = '*'
-            if lane[pos] == '0':
-                lane[pos+1] = vehicle.initial
-            else:
-                lane[pos] = vehicle.initial
+
+        if pos >= track_length:
+            pos = track_length - 1
+
+        for j, column in enumerate(lane):
+            if column == vehicle.initial:
+                lane[j] = '*'
+        if lane[pos] == 'O':
+            lane[pos+1] = vehicle.initial
+        else:
+            lane[pos] = vehicle.initial
+
         print(''.join(lane))
 
 def main():
@@ -76,27 +80,29 @@ def main():
         display_track(track, 100, vehicles)
 
         # move vehicles
-        move = check_input.get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
-        player_pos = vehicles[player_veh].position
-        try:
-            player_obs_pos = track[player_veh].index('0', player_pos)
-        except:
-            player_obs_pos = 1000 # out of track, there is no obstacle left in the track
+        # do not ask if player already arrived the finished line
+        if vehicles[player_veh] not in winners:
+            move = check_input.get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
+            player_pos = vehicles[player_veh].position
+            try:
+                player_obs_pos = track[player_veh].index('O', player_pos + 1)
+            except:
+                player_obs_pos = 100 # out of track, there is no obstacle left in the track
 
-        if move == 1:
-            print(vehicles[player_veh].fast(track[player_veh].index('0', player_pos)))
-        elif move == 2:
-            print(vehicles[player_veh].slow(track[player_veh].index('0', player_pos)))
-        else:
-            print(vehicles[player_veh].special_move(track[player_veh].index('0', player_pos)))
+            if move == 1:
+                print(vehicles[player_veh].fast(player_obs_pos))
+            elif move == 2:
+                print(vehicles[player_veh].slow(player_obs_pos))
+            else:
+                print(vehicles[player_veh].special_move(player_obs_pos))
 
-        # move opponents        
+        # move opponents
         for i in range(len(vehicles)):
-            if i != (player - 1):
+            if i != (player - 1) and vehicles[i] not in winners:
                 try:
-                    obs_pos = track[i].index('0', vehicles[i].position)
+                    obs_pos = track[i].index('O', vehicles[i].position + 1)
                 except:
-                    obs_pos = 1000 # out of track, there is no obstacle left in the track
+                    obs_pos = 100 # out of track, there is no obstacle left in the track
 
                 r = random.random() # 0.0 < r < 1.0
                 if r <= 0.3:
@@ -111,8 +117,17 @@ def main():
                     print(vehicles[i].slow(obs_pos))
         
         # check for winners
-    
+        for veh in vehicles:
+            if veh.position >= 99 and veh not in winners:
+                winners.append(veh)
+
+    display_track(track, 100, vehicles)
+
     # print the winners
+    placements = ["1st", "2nd", "3rd"]
+    for i, veh in enumerate(winners):
+        print(f"{placements[i]} place: {veh}")
+
 
 if __name__ == "__main__":
     main()

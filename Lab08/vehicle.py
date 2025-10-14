@@ -33,7 +33,6 @@ class Vehicle(abc.ABC):
                 return f"{self._name} quickly moves {spaces} units"
             else:
                 self._position = obs_loc
-                self._energy -= 5
                 return f"{self._name} CRASHED into an obstacle!"
         else:
             self._position += 1

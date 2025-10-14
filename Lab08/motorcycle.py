@@ -6,7 +6,7 @@ class Motorcycle(Vehicle):
         # Motorcycle moves by 75% of its speed rather than half
         # check obstacle
         spaces = random.randint(int(0.75*self._speed - 1), int(0.75*self._speed + 1))
-        if self.position + spaces < obs_loc:
+        if (self.position + spaces) < obs_loc:
             self._position += spaces
             return f"{self._name} slowly moves {spaces} units"
         else:
@@ -19,9 +19,9 @@ class Motorcycle(Vehicle):
         if self._energy >= 15:
             self._energy -= 15
             r = random.random() # 0.0 < r < 1.0
-            if r < 0.75:
+            if r <= 0.75:
                 spaces = random.randint(2*self._speed - 1, 2*self._speed + 1)
-                if self.position + spaces > obs_loc:
+                if self.position + spaces < obs_loc:
                     self._position += spaces
                     return f"{self._name} pops a wheelie and moves {spaces} units"
                 else:
