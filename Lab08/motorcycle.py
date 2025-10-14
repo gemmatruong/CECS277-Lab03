@@ -5,7 +5,7 @@ class Motorcycle(Vehicle):
     def slow(self, obs_loc):
         # Motorcycle moves by 75% of its speed rather than half
         # check obstacle
-        spaces = random.randint(0.75*self._speed - 1, 0.75*self._speed + 1)
+        spaces = random.randint(int(0.75*self._speed - 1), int(0.75*self._speed + 1))
         if self.position + spaces < obs_loc:
             self._position += spaces
             return f"{self._name} slowly moves {spaces} units"

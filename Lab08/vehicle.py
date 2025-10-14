@@ -43,7 +43,7 @@ class Vehicle(abc.ABC):
     def slow(self, obs_loc):
         # Move the vehicle by a random amount at half its speed
         #check obstacle
-        spaces = random.randint(self._speed/2 - 1, self._speed/2 + 1)
+        spaces = random.randint(int(self._speed/2 - 1), int(self._speed/2 + 1))
         self._position += spaces
         return f"{self._name} slowly moves {spaces} units"
 

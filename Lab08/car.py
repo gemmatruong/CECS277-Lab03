@@ -5,7 +5,7 @@ class Car(Vehicle):
     def special_move(self, obs_loc):
         # 'nitro_boots' special ability: moving the car 1.5x its speed
         if self.energy >= 15:
-            spaces = random.randint(1.5*self._speed - 1, 1.5*self._speed + 1)
+            spaces = random.randint(int(1.5*self._speed - 1), int(1.5*self._speed + 1))
             self._energy -= 15
 
             # check obstacle
