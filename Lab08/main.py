@@ -16,9 +16,11 @@ import random
 
 def create_track(num_vehicles, track_length):
     track = []
-    # One lane per vehicle and 2 obstacles per lane
-    # place obstacles on track, 2 in each lane at random column
-    # (but not at start or end points)
+    """
+        One lane per vehicle and 2 obstacles per lane,
+        place obstacles on track, 2 in each lane at random column
+        (but not at start or end points)
+    """
     if track_length <= 2:
         raise ValueError("The length of track must be greater than 2!")
 
@@ -35,8 +37,10 @@ def create_track(num_vehicles, track_length):
     return track
 
 def display_track(track, track_length, vehicles):
-    # place the vehicle's initials at its current position. Player is a 'P'
-    # display the updated track
+    """ 
+        Place the vehicle's initials at its current position. Player is a 'P',
+        display the updated track
+    """
     for i, vehicle in enumerate(vehicles):
         lane = track[i]
         pos = vehicle.position

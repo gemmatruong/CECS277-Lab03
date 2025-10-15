@@ -39,7 +39,7 @@ class Vehicle(abc.ABC):
             # check obstacle
             if (self.position + spaces) < obs_loc:
                 self._position += spaces
-                return f"{self._name} quickly moves {spaces} units"
+                return f"{self._name} quickly moves {spaces} units!"
             else:
                 self._position = obs_loc
                 return f"{self._name} CRASHED into an obstacle!"
@@ -53,7 +53,7 @@ class Vehicle(abc.ABC):
         #check obstacle
         spaces = random.randint(int(self._speed/2 - 1), int(self._speed/2 + 1))
         self._position += spaces
-        return f"{self._name} slowly moves {spaces} units"
+        return f"{self._name} slowly moves {spaces} units!"
 
     def __str__(self):
         return f"{self._name}: [Position - {self.position}, Energy - {self.energy}]"

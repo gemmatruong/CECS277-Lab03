@@ -9,10 +9,10 @@ class Motorcycle(Vehicle):
         spaces = random.randint(int(0.75*self._speed - 1), int(0.75*self._speed + 1))
         if (self.position + spaces) < obs_loc:
             self._position += spaces
-            return f"{self._name} slowly moves {spaces} units"
+            return f"{self._name} slowly moves {spaces} units!"
         else:
             self._position += spaces
-            return f"{self._name} slowly dodges the obstacle and moves {spaces} units"
+            return f"{self._name} slowly dodges the obstacle and moves {spaces} units!"
 
     def special_move(self, obs_loc):
         # 'wheelie' special ability: moving the motorcycle 2x its speed
@@ -24,14 +24,14 @@ class Motorcycle(Vehicle):
                 spaces = random.randint(2*self._speed - 1, 2*self._speed + 1)
                 if self.position + spaces < obs_loc:
                     self._position += spaces
-                    return f"{self._name} pops a wheelie and moves {spaces} units"
+                    return f"{self._name} pops a wheelie and moves {spaces} units!"
                 else:
                     self._position = obs_loc
-                    return f"{self._name} tries to pop a wheelie, but CRASHED into an obstacle"
+                    return f"{self._name} tries to pop a wheelie, but CRASHED into an obstacle!"
                     
             else:
                 self._position += 1
-                return f"{self._name} tries to pop a wheelie, but fall over and only move 1 space forward"
+                return f"{self._name} tries to pop a wheelie, but fall over and only move 1 space forward!"
         else:
             self._position += 1
-            return f"{self._name} tries to pop a wheelie, but is all out of energy"
+            return f"{self._name} tries to pop a wheelie, but is all out of energy!"

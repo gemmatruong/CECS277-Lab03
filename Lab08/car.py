@@ -12,10 +12,10 @@ class Car(Vehicle):
             # check obstacle
             if (self.position + spaces) < obs_loc:
                 self._position += spaces
-                return f"{self._name} uses nitro boost and moves {spaces} units"
+                return f"{self._name} uses nitro boost and moves {spaces} units!"
             else:
                 self._position = obs_loc
-                return f"{self._name} tries to use nitro boost, but CRASHED into an obstacle"
+                return f"{self._name} tries to use nitro boost, but CRASHED into an obstacle!"
         else:
             self._position += 1
             return f"{self._name} tries to use nitro boost, but is all out of energy!"
