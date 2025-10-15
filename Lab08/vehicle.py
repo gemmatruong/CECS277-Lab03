@@ -50,10 +50,12 @@ class Vehicle(abc.ABC):
 
     def slow(self, obs_loc):
         # Move the vehicle by a random amount at half its speed
-        #check obstacle
         spaces = random.randint(int(self._speed/2 - 1), int(self._speed/2 + 1))
         self._position += spaces
-        return f"{self._name} slowly moves {spaces} units!"
+        if self._position < obs_loc:
+            return f"{self._name} slowly moves {spaces} units!"
+        else:
+            return f"{self._name} slowly goes around the obstacle and moves {spaces} units!"
 
     def __str__(self):
         return f"{self._name}: [Position - {self.position}, Energy - {self.energy}]"

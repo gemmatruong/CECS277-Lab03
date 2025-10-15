@@ -127,7 +127,6 @@ def main():
                 if r <= 0.3:
                     # fast
                     print(vehicles[i].fast(obs_pos))
-
                 elif 0.3 < r < 0.6:
                     # special move
                     print(vehicles[i].special_move(obs_pos))
