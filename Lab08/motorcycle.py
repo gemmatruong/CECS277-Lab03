@@ -2,6 +2,7 @@ from vehicle import Vehicle
 import random
 
 class Motorcycle(Vehicle):
+    """ Represents a motorcycle - Inherit from Vehicle Class """
     def slow(self, obs_loc):
         # Motorcycle moves by 75% of its speed rather than half
         # check obstacle

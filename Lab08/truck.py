@@ -2,6 +2,7 @@ from vehicle import Vehicle
 import random
 
 class Truck(Vehicle):
+    """ Represents a truck - Inherit from Vehicle Class """
     def special_move(self, obs_loc):
         # 'rams' special ability: moving the truck forward by 2x its speed
         # check obstacle

@@ -2,6 +2,7 @@ from vehicle import Vehicle
 import random
 
 class Car(Vehicle):
+    """ Represents a car - Inherit from Vehicle Class """
     def special_move(self, obs_loc):
         # 'nitro_boots' special ability: moving the car 1.5x its speed
         if self.energy >= 15:

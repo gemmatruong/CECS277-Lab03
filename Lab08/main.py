@@ -1,3 +1,12 @@
+""" LAB #08
+    10/15/2025
+    Student 1: Thi, Truong
+    Student 2: Udonna, Uchegbulam
+
+    A program that Create a game where the user must choose a vehicle, either a Car, Motorcycle, or Truck and then
+race against the remaining choices.
+"""
+
 from vehicle import Vehicle
 from car import Car
 from motorcycle import Motorcycle
@@ -45,6 +54,16 @@ def display_track(track, track_length, vehicles):
 
         print(''.join(lane))
 
+def find_obs_position(lane, current_pos):
+    """
+    Find the next obstacle location after current_pos in lane_list.
+    Returns index of obstacle or None if none found.
+    """
+    try:
+        return lane.index('O', current_pos + 1)
+    except ValueError:
+        return 100  # out of range, there is no more obstacle in the lane
+
 def main():
     vehicle_names = ["Lightning Car", "Swift Bike", "Bohemoth Truck"]
     vehicle_letters = ["C", "M", "T"]
@@ -84,10 +103,9 @@ def main():
         if vehicles[player_veh] not in winners:
             move = check_input.get_int_range("Choose action (1. Fast, 2. Slow, 3. Special Move): ", 1, 3)
             player_pos = vehicles[player_veh].position
-            try:
-                player_obs_pos = track[player_veh].index('O', player_pos + 1)
-            except:
-                player_obs_pos = 100 # out of track, there is no obstacle left in the track
+
+            # Call function to find the nearest obstacle ahead of vehicle
+            player_obs_pos = find_obs_position(track[player_veh], player_pos)
 
             if move == 1:
                 print(vehicles[player_veh].fast(player_obs_pos))
@@ -99,10 +117,7 @@ def main():
         # move opponents
         for i in range(len(vehicles)):
             if i != (player - 1) and vehicles[i] not in winners:
-                try:
-                    obs_pos = track[i].index('O', vehicles[i].position + 1)
-                except:
-                    obs_pos = 100 # out of track, there is no obstacle left in the track
+                obs_pos = find_obs_position(track[i], vehicles[i].position)
 
                 r = random.random() # 0.0 < r < 1.0
                 if r <= 0.3:

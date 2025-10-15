@@ -2,6 +2,15 @@ import abc
 import random
 
 class Vehicle(abc.ABC):
+    """
+    Abstract class - Represents a generic class for vehicles
+    Attributes: 
+        _name - vehicle name, 
+        _initial - vehicle's label, 
+        _speed - vehicle speed, 
+        _position - vehicle's current location on the track, 
+        _energy - vehicle's power level. 
+    """
     def __init__(self, name, initial, speed):
         self._name = name
         self._initial = initial
