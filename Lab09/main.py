@@ -2,6 +2,8 @@
     Student 1: Thi, Truong
     Student 2: Udonna, Uchegbulam
 
+    Date: 10/22/2025
+
     A program that simulates an escape room by having the user open a series of three doors
     random chosen from several different types of doors.
 """
