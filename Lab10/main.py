@@ -26,6 +26,7 @@ def main():
     die = False
     finish = False
 
+    # Loop until the player reaches finish or dies.
     while not (die or finish):
         print()
         print(player)
@@ -48,6 +49,7 @@ def main():
         elif choice == 4: # Go West
             move = player.go_west()
         else:
+            print("You chose to leave! Bye...")
             break
 
         if move == 'o':
