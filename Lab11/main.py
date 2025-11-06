@@ -1,3 +1,11 @@
+""" LAB #11
+    11/05/2025
+    Student 1: Thi, Truong
+    Student 2: Udonna, Uchegbulam
+
+    A program that creates a game where the user must defeat three monsters to pass the trials
+"""
+
 import check_input
 import random
 from beg_factory import BeginnerFactory
@@ -36,7 +44,10 @@ def main():
 
         # Attack the monster with the selected weapon
         print()
-        print(player.melee_attack(opponent))
+        if weapon == 1:
+            print(player.melee_attack(opponent))
+        else:
+            print(player.ranged_attack(opponent))
 
         # If the monster is still alive, counterattacks.
         if opponent.hp > 0:
@@ -46,13 +57,13 @@ def main():
             monsters.remove(opponent)
         
         # End game if player deafeated all 3 monster or player died
-        if (len(monsters) == 0):
+        if (len(monsters) == 0): # Deafeated 3 monster
             win = True
             print("\nCongratulations! You defeated all three monsters!")
-        if player.hp == 0:
+        if player.hp == 0:  # Player died
             die = True
             print("\nYou died. Good luck next time!")
-    print("Game Over!")
+    print("Game Over...")
 
 if __name__ == "__main__":
     main()
