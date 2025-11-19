@@ -28,3 +28,18 @@ def get_date():
     else:
         return f"{mm}/{dd}/{yyyy}"
 
+def get_time():
+    # Get user's input for hour and minute
+    # Return the time in the format: HH:MM
+    hh = check_input.get_int_range("Enter hour: ", 0,23)
+    mm = check_input.get_int_range("Enter minute: ", 0, 59)
+
+    if hh < 10 and mm < 10:
+        return f"0{hh}:0{mm}"
+    elif hh < 10:
+        return f"0{hh}:{mm}"
+    elif mm < 10:
+        return f"{hh}:0{mm}"
+    else:
+        return f"{hh}:{mm}"
+
