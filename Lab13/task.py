@@ -1,22 +1,27 @@
 class Task:
+    ''' A class that represents a single task with a description, due date, and due time'''
+
     def __init__(self, desc, date, time):
+        '''assign the parameters to the attributes'''
         self._description = desc
         self._date = date
         self._time = time
-    
+
     @property
     def date(self):
+        '''date: due date of the task. A string in the format: MM/DD/YYYY'''
         return self._date
     
     def __str__(self):
-        # String representation of task - user facing
+        ''' Returns a string used to display the task information to the user'''
         return f"{self._description} - Due: {self.date} at {self._time}"
     
     def __repr__(self):
-        # String representation of a task - file facing
+        ''' Returns a string used to write the task to the file'''
         return f"{self._description},{self.date},{self._time}"
     
     def __lt__(self, other):
+        ''' Returns true if the self task is less than the other task'''
         # Compares by year, then month, then day
         # then hour, then minute,
         # then description
