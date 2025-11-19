@@ -43,3 +43,55 @@ def get_time():
     else:
         return f"{hh}:{mm}"
 
+def main():
+    task_list = TaskList()
+    option = 0
+    while option != 6:
+        print()
+        print("-Tasklist-")
+        print(f"Tasks to complete: {len(task_list)}")
+        option = main_menu()
+
+        if option == 1:     # Display current task
+            if task_list.get_current_task() == None:
+                print("Well-done! You have completed all of your tasks.")
+            else:
+                print(f"Current task is: {task_list.get_current_task()}")
+
+        elif option == 2:   # Display all tasks
+            print("Tasks:")
+            for i, task in enumerate(task_list):
+                print(f"{i+1}. {task}")
+
+        elif option == 3:   # Mark current task complete
+            print("Marking current task as complete:")
+            print(task_list.mark_complete())
+            print("New current task is: ")
+            print(task_list.get_current_task())
+
+        elif option == 4:   # Add new task
+            description = input("Enter a task: ")
+            print("Enter the due date: ")
+            due_date = get_date()
+            print("Enter time:")
+            time = get_time()
+            task_list.add_task(description, due_date, time)
+
+        elif option == 5:   # Search by date
+            print("Enter date to search:")
+            date_to_search = get_date()
+            print(f"Tasks due on {date_to_search}")
+            task_count = 0
+            for i, task in enumerate(task_list):
+                if task.date == date_to_search:
+                    task_count += 1
+                    print(f"{i+1}. {task}")
+            if task_count == 0:
+                print("None! You have no task on the search date")
+
+        else:   # Save and quit
+            task_list.save_file()
+            print("Saving List...")
+
+if __name__ == "__main__":
+    main()
